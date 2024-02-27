@@ -1,0 +1,143 @@
+/* footer.css */
+@import url("https://fonts.googleapis.com/css2?family=Orbitron&display=swap");
+:root {
+  --icon-size: 60px;
+}
+.footer-container {
+  background-color: #000;
+  font-family: "Source Code Pro";
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  color: #444444;
+}
+
+.website-visit-counter {
+  width: fit-content;
+  padding: 2%;
+  font-family: "Orbitron", Arial;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 1.25rem;
+  color: #fff;
+  background-color: #00000069;
+  border-radius: 10px;
+  font-weight: 800;
+  border: 3px solid var(--primary-color);
+}
+
+.contact-div {
+  width: 100%;
+  height: fit-content;
+  padding: 1rem;
+  margin-bottom: -1rem;
+  margin-top: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.sci {
+  display: flex;
+  width: 90%;
+  height: 70px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding: 0.5rem;
+  list-style: none;
+}
+
+.sci div {
+  filter: grayscale(100%) invert(1);
+}
+
+.sci div:hover {
+  filter: grayscale(0);
+}
+
+.header-main-sm-ig {
+  background-image: url(/ig-2-2.png);
+}
+.header-main-sm-gh {
+  background-image: url(/github-2-2.png);
+}
+
+.header-main-sm-tg {
+  height: var(--icon-size);
+  background-image: url(../../public/tg-2.png);
+}
+
+.header-main-sm-link {
+  background-image: url(/li-2-2.png);
+}
+
+.header-main-sm-dc {
+  background-image: url(/discord-2.png);
+}
+
+.header-main-sm-gmail {
+  background-image: url(/gmail-2-2.png);
+}
+.header-main-sm-fb {
+  background-image: url(/fblogo.png);
+}
+.header-main-sm-x {
+  background-image: url(/xlogo.png);
+}
+
+.header-main-sm-dc,
+.header-main-sm-fb,
+.header-main-sm-gh,
+.header-main-sm-gmail,
+.header-main-sm-ig,
+.header-main-sm-link,
+.header-main-sm-tg,
+.header-main-sm-x {
+  width: var(--icon-size);
+  height: var(--icon-size);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@media screen and (min-width: 150px) and (max-width: 1300px) {
+  .header-main-sm-dc,
+  .header-main-sm-fb,
+  .header-main-sm-gh,
+  .header-main-sm-gmail,
+  .header-main-sm-ig,
+  .header-main-sm-link,
+  .header-main-sm-tg,
+  .header-main-sm-x {
+    width: 40px;
+    height: 40px;
+  }
+
+  .sci {
+    width: 80vw;
+    gap: 15%;
+    margin-bottom: 20%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: auto;
+    align-items: left;
+    justify-content: left;
+
+  }
+
+  .footer-container p { 
+    font-size: 0.9rem;
+    margin-bottom: 30%;
+  }
+}

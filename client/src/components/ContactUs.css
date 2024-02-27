@@ -1,0 +1,156 @@
+/* ContactUs.css */
+body,
+html {
+  font-family: "Roboto", Arial;
+}
+
+.contactus-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contactus-title {
+  margin-bottom: 0;
+  width: 100%;
+  margin-top: 3%;
+  text-align: center;
+  text-decoration: underline overline 3px var(--secondary-color);
+  text-underline-offset: 20px;
+  font-size: 2rem;
+}
+
+.contactus-title h1 {
+  font-family: "Roboto";
+  width: 100%;
+}
+
+.contactus-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 5%;
+  width: 100%;
+}
+
+.contactus-header {
+  width: 40vw;
+}
+.contactus-header img {
+  width: 100%;
+}
+
+.contactcardarea {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  align-items: center;
+}
+
+/* Form styling */
+form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+label {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+input,
+textarea {
+  padding: 10px;
+  margin: 5px 0 15px 0;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.contactcardarea button {
+  background-color: #b700ffb8;
+  box-shadow: 1px 1px 10px 1px #00000054, 1px 1px 10px 1px #00000054;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 30%;
+  align-self: center;
+}
+
+.contactcardarea button:hover {
+  background-color: #000;
+}
+
+.contactcardarea button:disabled {
+  background-color: #d3d3d3;
+  cursor: not-allowed;
+}
+
+#message,
+#email {
+  background-color: #00000069;
+  color: white;
+}
+
+#message {
+  margin-bottom: 10%;
+}
+
+textarea {
+  height: 200px; /* Adjust the height as needed */
+  padding: 10px;
+  margin: 5px 0 15px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  width: 100%;
+  font-family: "Source Code Pro";
+}
+
+/* Validation error styling */
+.contactcardarea p {
+  color: rgb(255, 255, 255);
+}
+
+/* Dialog styling */
+.Dialog {
+  text-align: center;
+}
+
+/* Success dialog styling */
+.DialogContent {
+  padding: 20px;
+}
+
+/* Responsive styling */
+@media screen and (min-width: 150px) and (max-width: 1300px) {
+  input,
+  textarea {
+    width: 100%;
+  }
+
+  .contactus-title {
+    margin-top: 10vh;
+  }
+
+  .contactus-body p {
+    font-size: 1rem;
+    padding: 5%;
+    margin-top: -5%;
+  }
+
+  form {
+    width: 90vw;
+  }
+
+  .contactcardarea button {
+    width: fit-content;
+    background-color: #b700ffb8;
+  }
+}
+
+

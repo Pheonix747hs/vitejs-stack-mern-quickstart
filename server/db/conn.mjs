@@ -1,6 +1,7 @@
 import mongoose from 'mongoose'
-
-const connectionString = process.env.ATLAS_URI || ''
+import dotenv from 'dotenv'
+dotenv.config();
+const connectionString = process.env.ATLAS_URI || "";
 
 mongoose
   .connect(connectionString, {

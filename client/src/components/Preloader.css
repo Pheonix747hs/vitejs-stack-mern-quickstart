@@ -1,0 +1,81 @@
+/* Preloader.css */
+
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #121212; /* Background color */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+}
+
+.preloader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.preloader-content {
+  text-align: center;
+  color: #fff; /* Text color */
+}
+
+.preloader-content h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.preloader-content p {
+  font-size: 16px;
+  margin: 0;
+}
+
+/* Add any additional styling as needed */
+
+/* Preloader.css */
+
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #121212; /* Background color */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+}
+
+.preloader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.preloader-content {
+  text-align: center;
+  color: #fff; /* Text color */
+}
+
+.preloader-content h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.preloader-content p {
+  font-size: 16px;
+  margin: 0;
+}
+
+/* Add any additional styling as needed */

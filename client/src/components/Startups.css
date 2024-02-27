@@ -1,0 +1,48 @@
+/* Startups.css */
+
+.startups-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.startups-title {
+  margin-bottom: 0;
+  width: 100%;
+  margin-top: 2%;
+  text-align: center;
+  text-decoration: underline overline 3px var(--secondary-color);
+  text-underline-offset: 30px;
+  font-size: 4rem;
+}
+
+.startups-title h1 {
+  font-family: "Roboto";
+  width: 100%;
+}
+.startups-page {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-evenly;
+  margin-bottom: 5%;
+  width: 100%;
+      background-color: #fccb4f;
+}
+
+.startups-header{
+    width: 40vw;
+}
+.startups-header img {
+  width: 100%;
+}
+
+@media screen and (min-width: 150px) and (max-width: 450px) {
+  .startups-title{
+    font-size: 2.5rem;
+    margin-top: 10vh;
+  }
+
+  .startups-header{
+    width: 90vw;
+  }
+}

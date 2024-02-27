@@ -1,0 +1,412 @@
+/* App.css */
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+:root {
+  --primary-color: #9d00ff;
+  --secondary-color: #ffee00;
+  --text-color: #fff;
+  --bg-color: #000000;
+  --icon-size2: 40px;
+}
+
+body {
+  font-family: "Source Code Pro", sans-serif;
+  background-color: #333;
+  backdrop-filter: brightness(75%);
+  color: #fff;
+  overflow-y: hidden;
+}
+
+.app-container {
+  height: 100vh;
+  color: #ffffff;
+}
+
+body,
+html {
+  height: 100%;
+  margin: 0;
+}
+
+.navbar {
+  font-family: "Source Code Pro";
+  position: fixed;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: #000000;
+  align-items: center;
+  padding: 10px;
+  color: #ffffff;
+  z-index: 5000;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: var(--text-color); /* Font color for normal state */
+  font-weight: bold;
+  font-size: 20px; /* Adjust the font size as needed */
+  transition: color 0.5s ease-in-out;
+}
+
+.navbar a:hover {
+  color: var(--secondary-color);
+  text-decoration: underline overline 2px var(--primary-color);
+  text-underline-offset: 5px;
+  transition: text-decoration 0.5s ease-in-out;
+}
+
+.navbar button {
+  cursor: pointer;
+}
+
+.logo {
+  height: 100%;
+  margin-left: -4em;
+  background: none;
+  border: none;
+  margin-top: -1.2em;
+}
+
+.logo-img {
+  height: 130%;
+  filter: brightness(300%);
+}
+
+.navigation-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 10%;
+  text-transform: uppercase;
+}
+
+.burger-menu {
+  display: none;
+}
+
+.overlay {
+  display: none;
+}
+
+/* UpcomingEventsModal.css */
+.upcoming-events-modal {
+  position: fixed;
+  bottom: 3.5%;
+  right: 1.5%;
+  width: 20%;
+  /* background: linear-gradient(0deg, #b700ff 0%, #ffffff00 100%); */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  z-index: 5000;
+  color: #000000;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+  height: 33%;
+}
+
+.slider2 img{
+ width: 100%;
+ border-radius: 2%;
+ border-bottom: 3px solid var(--primary-color);
+ border-top: 3px solid var(--primary-color);
+}
+
+.upcoming-events-modal.closed {
+  transform: translateY(96%);
+  background: #ffffff;
+}
+
+.modal-content {
+  padding: 2%;
+  color: #fff;
+}
+
+.close-button {
+  width: 100%;
+  padding: 2%;
+  background: transparent;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin-bottom: -3%;
+}
+
+.closed .close-button{
+  background-color: #ffffff;
+}
+
+.closed .close-button img {
+  transform: rotate(180deg);
+}
+
+.closed .modal-content p,
+.closed .modal-content img,
+.closed .modal-content {
+  opacity: 0;
+}
+
+@media screen and (min-width: 150px) and (max-width: 450px) {
+  .navbar {
+    /* Add or adjust styles for the navbar in the media query */
+    position: fixed;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    background-color: var(--bg-color);
+    align-items: center;
+    padding: 10px;
+    color: #ffffff;
+    z-index: 5000;
+    gap: 60%;
+  }
+
+  .logo {
+    margin-top: 0rem;
+    height: 80%;
+  }
+
+  .navbar a {
+    font-size: 1.5rem;
+  }
+
+  .navigation-btn {
+    display: none;
+  }
+
+  .burger-menu {
+    margin-left: -10%;
+    display: flex;
+    cursor: pointer;
+    padding: 20px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+  }
+
+  .bar {
+    width: 50px;
+    height: 6px;
+    background: var(--secondary-color);
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgb(196, 47, 255);
+    transition: all 0.5s ease-in-out;
+  }
+
+  .bar::before,
+  .bar::after {
+    content: "";
+    position: absolute;
+    width: 50px;
+    height: 6px;
+    background: var(--secondary-color);
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(196, 47, 255);
+    transition: all 0.5s ease-in-out;
+  }
+
+  .bar::before {
+    transform: translateY(-16px);
+  }
+
+  .bar::after {
+    transform: translateY(16px);
+  }
+
+  .burger-menu.open .bar {
+    transform: translateX(-50px);
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .burger-menu.open .bar::before {
+    transform: rotate(45deg) translate(35px, -35px);
+  }
+
+  .burger-menu.open .bar::after {
+    transform: rotate(-45deg) translate(35px, 35px);
+  }
+
+  .overlay {
+    position: fixed;
+    top: 69px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 6000;
+    display: none;
+  }
+
+  .overlay.open {
+    display: block;
+  }
+
+  .overlay a {
+    display: block;
+    padding: 20px;
+    font-size: 1rem; /* Adjust the font size as needed */
+    color: var(--secondary-color);
+    text-transform: uppercase;
+    font-weight: 600;
+    font-family: "Source Code Pro";
+    transition: 0.3s;
+  }
+
+  .overlay a:hover {
+    background-color: #333;
+  }
+
+  .upcoming-events-modal {
+    width: 60%;
+    height: 100%;
+    right: -60%;
+    bottom: -25%;
+    transform: rotate(-90deg);
+    background: none;
+  }
+  
+  .upcoming-events-modal.closed {
+    transform: rotate(-90deg) translateY(27%);
+    background: transparent;
+  }
+
+  .closed .close-button{
+  background: transparent;}
+
+  .upcoming-events-modal p {
+    display: none;
+  }
+.slider2 img{
+  width: 100%;
+  rotate: 90deg;
+  margin-top: 20%;
+}
+  
+}
+
+@media screen and (min-width: 450px) and (max-width: 1300px) {
+  .navbar {
+    /* Add or adjust styles for the navbar in the media query */
+    position: fixed;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    background-color: var(--bg-color);
+    align-items: center;
+    padding: 10px;
+    color: #ffffff;
+    z-index: 5000;
+    gap: 60%;
+  }
+
+  .logo {
+    margin-top: 0rem;
+    height: 80%;
+  }
+
+  .navbar a {
+    font-size: 1.5rem;
+  }
+
+  .navigation-btn {
+    display: none;
+  }
+
+  .burger-menu {
+    margin-left: -10%;
+    display: flex;
+    cursor: pointer;
+    padding: 20px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+  }
+
+  .bar {
+    width: 50px;
+    height: 6px;
+    background: var(--secondary-color);
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgb(196, 47, 255);
+    transition: all 0.5s ease-in-out;
+  }
+
+  .bar::before,
+  .bar::after {
+    content: "";
+    position: absolute;
+    width: 50px;
+    height: 6px;
+    background: var(--secondary-color);
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(196, 47, 255);
+    transition: all 0.5s ease-in-out;
+  }
+
+  .bar::before {
+    transform: translateY(-16px);
+  }
+
+  .bar::after {
+    transform: translateY(16px);
+  }
+
+  .burger-menu.open .bar {
+    transform: translateX(-50px);
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .burger-menu.open .bar::before {
+    transform: rotate(45deg) translate(35px, -35px);
+  }
+
+  .burger-menu.open .bar::after {
+    transform: rotate(-45deg) translate(35px, 35px);
+  }
+
+  .overlay {
+    position: fixed;
+    top: 69px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 6000;
+    display: none;
+  }
+
+  .overlay.open {
+    display: block;
+  }
+
+  .overlay a {
+    display: block;
+    padding: 20px;
+    font-size: 1rem; /* Adjust the font size as needed */
+    color: var(--secondary-color);
+    text-transform: uppercase;
+    font-weight: 600;
+    font-family: "Source Code Pro";
+    transition: 0.3s;
+  }
+
+  .overlay a:hover {
+    background-color: #333;
+  }
+}

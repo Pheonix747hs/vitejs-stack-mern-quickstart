@@ -1,0 +1,74 @@
+/* src/components/LikeButton.css */
+
+.like-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.like-button {
+  background-color: #ff6b6b;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  animation: pulse 1s infinite; /* Start pulsing animation by default */
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease; /* Add transform transition */
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.like-container.liked .like-button {
+  animation: pulse 1s infinite;
+}
+
+.like-button:hover {
+  background-color: #ff4757;
+  transform: scale(1); /* Stop pulsing animation on hover */
+  animation: none; /* Stop the animation on hover */
+}
+
+.thumbs-up-icon {
+  width: 20px; /* Adjust the size of the thumbs-up icon */
+  margin-right: 5px; /* Add some spacing between the icon and text */
+}
+
+.like-text {
+  font-size: 14px;
+  color: #555;
+  margin-top: 5px;
+  font-style: italic;
+  text-align: center;
+  max-width: 200px;
+  margin: 10px auto;
+}
+
+/* Set the background color of the image to match the outer container */
+.like-button img {
+  background-color: #ff6b6b;
+  border-radius: 5px; /* Optional: Add border-radius to match the button */
+}
+
+
+@media screen and (min-width: 150px) and (max-width: 450px) {
+  .like-container{
+    margin-bottom: -20%;
+  }
+}

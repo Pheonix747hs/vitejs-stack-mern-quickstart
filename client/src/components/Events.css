@@ -1,0 +1,215 @@
+/* Events.css */
+.events-container,
+.competitions-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.slider {
+  position: relative;
+  height: 91vh;
+  width: 100vw;
+  top: 60px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.slider img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Maintain aspect ratio and cover the entire container */
+  transition: transform 0.5s ease-in-out;
+}
+
+.gradient-overlay {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgb(0, 0, 0));
+  position: absolute;
+  bottom: 0;
+  align-self: center;
+  width: 100vw;
+  height: 50%; /* Adjust the gradient overlay height as needed */
+  display: none;
+}
+
+.thumbnails {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: auto;
+  margin-top: -15%;
+  z-index: 10; /* Ensure thumbnails are positioned above the gradient overlay */
+}
+
+.thumbnails img {
+  width: 10vw;
+  height: 5.7vw;
+  margin: 0 5px;
+  cursor: pointer;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0.7;
+}
+
+.thumbnails img.active {
+  opacity: 0.3;
+}
+
+.buttons {
+  position: relative; /* Added relative positioning */
+  z-index: 1; /* Ensure buttons are positioned above the gradient overlay */
+  margin-top: 1%;
+  margin-bottom: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+  justify-content: space-evenly; /* Adjust as needed */
+}
+
+.buttons button:hover {
+  cursor: pointer;
+}
+
+.register-btn {
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  margin-bottom: 1rem;
+}
+
+.go-to-previous-events,
+.go-to-previous-competitions {
+  background: rgb(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  margin-top: 2%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.8rem;
+}
+
+.previous-events-section {
+  margin-top: 10%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+}
+
+.prev-event-title {
+  text-align: center;
+  width: 100%;
+  text-transform: uppercase;
+  font-family: Arial, Helvetica, sans-serif;
+  text-decoration: underline 2px blueviolet;
+}
+
+.prevEvent {
+  width: 10%;
+  margin: 1%;
+  padding: 1%;
+  background: linear-gradient(226deg, rgba(0, 0, 0, 0.5) 0%, rgb(0, 0, 0) 100%);
+  border-radius: 20px;
+}
+
+.event-img,
+.competition-img {
+  width: 100%;
+  filter: grayscale(100%) brightness(50%);
+}
+
+@media screen and (min-width: 150px) and (max-width: 450px) {
+  .slider img {
+    width: 100vw;
+    height: fit-content;
+    border-radius: 20px;
+  }
+
+  .thumbnails img {
+    width: 10vw;
+    height: 5.8vw;
+    margin-top: 10vh;
+    border-radius: 1%;
+    z-index: 500;
+  }
+
+  .gradient-overlay{
+    display: none;
+  }
+
+  .buttons{
+    margin-top: -80%;
+  }
+
+  .go-to-previous-events, .go-to-previous-competitions{
+    display: none;
+  }
+
+  .previous-events-section{
+    margin-top: -69%;
+    align-items: left;
+  }
+  .prevEvent{
+    width: 40vw;
+    border-radius: 20px;
+  }
+  .prevEvent img{
+    border-radius: 20px;
+  }
+}
+
+@media screen and (min-width: 450px) and (max-width: 1300px) {
+  .slider img {
+    height: 80vh;
+    object-fit: contain;
+    border-radius: 20px;
+  }
+
+  .thumbnails img {
+    width: 10vw;
+    height: 5.8vw;
+    top: 10vh;
+    border-radius: 1%;
+    z-index: 500;
+    margin-top: auto;
+  }
+
+  .gradient-overlay{
+    display: none;
+  }
+
+  .buttons{
+    top: -0%;
+    margin-top: auto;
+  }
+
+  .go-to-previous-events, .go-to-previous-competitions{
+    display: none;
+  }
+
+  .previous-events-section{
+    margin-top: 10%;
+    align-items: left;
+  }
+  .prevEvent{
+    width: 40vw;
+    border-radius: 20px;
+  }
+  .prevEvent img{
+    border-radius: 20px;
+  }
+}
