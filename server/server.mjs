@@ -5,7 +5,6 @@ import connectToMongoDB from './db/conn.mjs'
 import eventSchema from './Schema/eventschema.js'
 import mongoose from 'mongoose'
 import bodyParser from 'body-parser'
-import compression from 'compression'
 dotenv.config();
 const PORT = process.env.PORT || 5050
 const app = express()
@@ -13,7 +12,7 @@ const eventschemas = mongoose.model('eventSchema', eventSchema)
 
 app.use(cors())
 app.use(compression())
-app.use(bodyParser.json({limit:'10mb'})) //increase the json limit to 10mb
+app.use(bodyParser.json({limit:'10mb'})) //increase the json size limit to 10mb
 
 // Create an API endpoint to fetch all documents from the collection
 app.get("/events", async (req, res) => {
@@ -40,15 +39,15 @@ app.post("/events", async (req, res) => {
   try {
       const client = await connectToMongoDB();
       const collection = client.db("Cipher_website").collection("Website_events");
-      // const newevent = new eventschemas(req.body);
-      // const validationerr = await newevent.validate();
+      const newevent = new eventschemas(req.body);
+      const validationerr = await newevent.validate();
 
-      // if (validationerr) {
-      //   // Handle validation errors (e.g., return a response with error details)
-      //   const errors = validationErrors.errors;
-      //   res.status(400).send({ message: 'Validation failed', errors });
-      //   return; // Exit the function if validation fails
-      // }
+      if (validationerr) {
+        // Handle validation errors (e.g., return a response with error details)
+        const errors = validationErrors.errors;
+        res.status(400).send({ message: 'Validation failed', errors });
+        return; // Exit the function if validation fails
+      }
 
       // Insert the data into the database using `insertOne` method
       const result = await collection.insertOne(req.body);
