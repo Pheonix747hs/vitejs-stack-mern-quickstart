@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./Events.css"; // Create a CSS file for styling
 import Footer from "./Footer";
+import axios from 'axios'; // Assuming you have axios installed
 
 const Events = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -37,6 +38,21 @@ const Events = () => {
       previousEventRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const response = await axios.get('/api/documents');
+        console.log('Retrieved events:', response.data);
+      } catch (err) {
+        console.error('Error fetching events:', err);
+      }
+    };
+
+    fetchEvents();
+  }, []);
+  
+
 
   return (
     <div className="eventbody">
@@ -93,14 +109,14 @@ const Events = () => {
               alt="previouseventimages"
             />
           </div>
-          {/* <div class="prevEvent">
+           <div class="prevEvent">
           <img
-            src="prev-event.png"
+            src="code-launch.png"
             class="event-img"
             alt="previouseventimages"
           />
         </div>
-        <div class="prevEvent">
+        {/*<div class="prevEvent">
           <img
             src="prev-event.png"
             class="event-img"
