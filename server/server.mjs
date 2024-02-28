@@ -34,8 +34,6 @@ app.post("/events", async (req, res) => {
       const client = await connectToMongoDB();
       const collection = client.db("Cipher_website").collection("Website_events");
 
-      
-
       // Insert the data into the database using `insertOne` method
       const result = await collection.insertOne(req.body);
 

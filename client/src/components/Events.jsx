@@ -2,12 +2,18 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./Events.css"; // Create a CSS file for styling
 import Footer from "./Footer";
-import axios from 'axios'; // Assuming you have axios installed
+import axios from 'axios';
+import DatePicker from "react-datepicker";
+import 'react-datepicker/dist/react-datepicker.css';
+
 
 const Events = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const totalSlides = 3; // Set the total number of slides
   const slideDuration = 7000; // Set the duration for each slide in milliseconds
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
 
   // Maintain an array of registration links corresponding to each event
   const registrationLinks = [
@@ -41,7 +47,7 @@ const Events = () => {
 
   const [formData, setFormData] = useState({
     title: '',
-    timestamp: new Date().toISOString().slice(0, 10), // Auto-generate timestamp
+    timestamp: '',
     venue: '',
   });
 
@@ -50,19 +56,39 @@ const Events = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+      const base64Data = e.target.result.split(',')[1]; // Extract base64 data
+      setSelectedImage(base64Data);
+    };
+
+    reader.readAsDataURL(file);
+  };
+
   const handleSubmitRegistration = async (event) => {
     event.preventDefault(); // Prevent default form submission
-    console.log("datasend:",formData)
+
+    if (!selectedImage) {
+      console.error("Please select an image to upload");
+      return;
+    }
+
+    const data = {
+      ...formData, // Existing form data from state
+      image: selectedImage, // Add the base64 encoded image data
+    };
+
     try {
-      const response = await axios.post('/api/events', formData); // Replace with your actual POST API endpoint
+      const response = await axios.post('/api/events', data);
       console.log('Registration response:', response.data);
-      // Handle successful registration (e.g., display a success message)
     } catch (error) {
       console.error('Error registering user:', error);
-      // Handle registration errors (e.g., display an error message)
     } finally {
-      // Clear the form data after successful or failed submission
       setFormData({ title: '', venue: '' });
+      setSelectedImage(null); // Clear selected image after submission
     }
   };
 
@@ -78,7 +104,7 @@ const Events = () => {
 
     fetchEvents();
   }, []);
-  
+
 
 
   return (
@@ -126,8 +152,8 @@ const Events = () => {
           </div>
         </div>
 
-         {/* Registration form */}
-         <div className="registration-form">
+        {/* Registration form */}
+        <div className="registration-form">
           <h2>Register for Event</h2>
           <form onSubmit={handleSubmitRegistration}>
             <label htmlFor="title">Title:</label>
@@ -140,13 +166,15 @@ const Events = () => {
               required
             />
             <br />
-            <label htmlFor="timestamp">Timestamp:</label>
-            <input
-              type="text"
+            <label htmlFor="timestamp">Event Date:</label>
+            <DatePicker
               id="timestamp"
               name="timestamp"
-              value={formData.timestamp}
-              readOnly // Disable user editing of timestamp
+              selected={selectedDate}
+              onChange={(date) => {
+                setSelectedDate(date);
+                handleInputChange({ target: { name: "timestamp", value: date.toISOString() } }); // Update form data
+              }}
             />
             <br />
             <label htmlFor="venue">Venue:</label>
@@ -158,6 +186,16 @@ const Events = () => {
               onChange={handleInputChange}
               required
             />
+            <br />
+            <div className="image-upload">
+              <label htmlFor="image">Select Image:</label>
+              <input
+                type="file"
+                id="image"
+                accept="image/*"
+                onChange={handleImageChange}
+              />
+            </div>
             <br />
             <button type="submit">Submit Registration</button>
           </form>
@@ -174,14 +212,14 @@ const Events = () => {
               alt="previouseventimages"
             />
           </div>
-           <div class="prevEvent">
-          <img
-            src="code-launch.png"
-            class="event-img"
-            alt="previouseventimages"
-          />
-        </div>
-        {/*<div class="prevEvent">
+          <div class="prevEvent">
+            <img
+              src="code-launch.png"
+              class="event-img"
+              alt="previouseventimages"
+            />
+          </div>
+          {/*<div class="prevEvent">
           <img
             src="prev-event.png"
             class="event-img"
