@@ -13,6 +13,7 @@ const Events = () => {
   const slideDuration = 7000; // Set the duration for each slide in milliseconds
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [eventsData, setEventsData] = useState([]);
 
 
   // Maintain an array of registration links corresponding to each event
@@ -47,8 +48,7 @@ const Events = () => {
 
   const [formData, setFormData] = useState({
     title: '',
-    timestamp: '',
-    venue: '',
+    time: '',
   });
 
   const handleInputChange = (event) => {
@@ -78,16 +78,17 @@ const Events = () => {
 
     const data = {
       ...formData, // Existing form data from state
-      image: selectedImage, // Add the base64 encoded image data
+      img: selectedImage, // Add the base64 encoded image data
     };
 
     try {
       const response = await axios.post('/api/events', data);
       console.log('Registration response:', response.data);
+      setEventsData(response.data);
     } catch (error) {
       console.error('Error registering user:', error);
     } finally {
-      setFormData({ title: '', venue: '' });
+      setFormData({ title: ''});
       setSelectedImage(null); // Clear selected image after submission
     }
   };
@@ -97,6 +98,7 @@ const Events = () => {
       try {
         const response = await axios.get('/api/events');
         console.log('Retrieved events:', response.data);
+        setEventsData(response.data);
       } catch (err) {
         console.error('Error fetching events:', err);
       }
@@ -110,8 +112,10 @@ const Events = () => {
   return (
     <div className="eventbody">
       <div className="events-container">
+
         <div className="slider">
           {/* Display the current slide */}
+
           <img
             src={`event${currentSlide + 1}.png`}
             alt={`Event ${currentSlide + 1}`}
@@ -155,7 +159,7 @@ const Events = () => {
         {/* Registration form */}
         <div className="registration-form">
           <h2>Register for Event</h2>
-          <form onSubmit={handleSubmitRegistration}>
+          <form onSubmit={(event) => event.preventDefault()}>
             <label htmlFor="title">Title:</label>
             <input
               type="text"
@@ -166,41 +170,40 @@ const Events = () => {
               required
             />
             <br />
-            <label htmlFor="timestamp">Event Date:</label>
+            <label htmlFor="time">Event Date:</label>
             <DatePicker
-              id="timestamp"
-              name="timestamp"
+              id="time"
+              name="time"
               selected={selectedDate}
               onChange={(date) => {
                 setSelectedDate(date);
-                handleInputChange({ target: { name: "timestamp", value: date.toISOString() } }); // Update form data
+                handleInputChange({ target: { name: "time", value: date.toISOString() } }); // Update form data
               }}
             />
             <br />
-            <label htmlFor="venue">Venue:</label>
-            <input
-              type="text"
-              id="venue"
-              name="venue"
-              value={formData.venue}
-              onChange={handleInputChange}
-              required
-            />
-            <br />
             <div className="image-upload">
-              <label htmlFor="image">Select Image:</label>
+              <label htmlFor="img">Select Image:</label>
               <input
                 type="file"
-                id="image"
+                id="img"
                 accept="image/*"
                 onChange={handleImageChange}
               />
             </div>
             <br />
-            <button type="submit">Submit Registration</button>
+            <button type="submit" onClick={handleSubmitRegistration}>Submit Registration</button>
           </form>
         </div>
+        <div>
+          {Array.from({ length: eventsData.length }).map((_, index) => (
+            <div key={eventsData[index]._id}>
+              <h2>{eventsData[index].title}</h2>
+              <p><img src={`data:image/png;base64,${eventsData[index].img}`} alt="" /></p>
+            </div>
+          ))}
 
+
+        </div>
 
         {/* Previous events section */}
         <div ref={previousEventRef} className="previous-events-section">
