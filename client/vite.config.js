@@ -13,6 +13,7 @@ export default defineConfig({
       '/api': {
         target: 'http://localhost:5050/', // Replace with actual server URL and port
         changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
       },
     },
   },

@@ -12,7 +12,7 @@ const Events = () => {
   // Maintain an array of registration links corresponding to each event
   const registrationLinks = [
     "https://forms.gle/BciDjdNB5iiCUEMN7",
-    "#"
+    "#",
   ];
 
   const previousEventRef = useRef(null); // Create a ref for the previous events section
@@ -39,10 +39,37 @@ const Events = () => {
     }
   };
 
+  const [formData, setFormData] = useState({
+    title: '',
+    timestamp: new Date().toISOString().slice(0, 10), // Auto-generate timestamp
+    venue: '',
+  });
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmitRegistration = async (event) => {
+    event.preventDefault(); // Prevent default form submission
+    console.log("datasend:",formData)
+    try {
+      const response = await axios.post('/api/events', formData); // Replace with your actual POST API endpoint
+      console.log('Registration response:', response.data);
+      // Handle successful registration (e.g., display a success message)
+    } catch (error) {
+      console.error('Error registering user:', error);
+      // Handle registration errors (e.g., display an error message)
+    } finally {
+      // Clear the form data after successful or failed submission
+      setFormData({ title: '', venue: '' });
+    }
+  };
+
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await axios.get('/api/documents');
+        const response = await axios.get('/api/events');
         console.log('Retrieved events:', response.data);
       } catch (err) {
         console.error('Error fetching events:', err);
@@ -98,6 +125,44 @@ const Events = () => {
             </button>
           </div>
         </div>
+
+         {/* Registration form */}
+         <div className="registration-form">
+          <h2>Register for Event</h2>
+          <form onSubmit={handleSubmitRegistration}>
+            <label htmlFor="title">Title:</label>
+            <input
+              type="text"
+              id="title"
+              name="title"
+              value={formData.title}
+              onChange={handleInputChange}
+              required
+            />
+            <br />
+            <label htmlFor="timestamp">Timestamp:</label>
+            <input
+              type="text"
+              id="timestamp"
+              name="timestamp"
+              value={formData.timestamp}
+              readOnly // Disable user editing of timestamp
+            />
+            <br />
+            <label htmlFor="venue">Venue:</label>
+            <input
+              type="text"
+              id="venue"
+              name="venue"
+              value={formData.venue}
+              onChange={handleInputChange}
+              required
+            />
+            <br />
+            <button type="submit">Submit Registration</button>
+          </form>
+        </div>
+
 
         {/* Previous events section */}
         <div ref={previousEventRef} className="previous-events-section">
